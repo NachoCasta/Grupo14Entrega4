@@ -74,6 +74,10 @@ def postgres():
 def example():
     return render_template('example.html')
 
+@app.route("/api/date")
+def messages_by_date():
+    return "DATE"
+
 
 if __name__ == "__main__":
     app.run()
