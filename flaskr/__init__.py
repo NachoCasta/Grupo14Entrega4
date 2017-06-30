@@ -95,7 +95,7 @@ def palabra_clave():
     return flask.jsonify(resultado)
 
 with open("var/www/flaskr/escuchas.json") as file:
-    data = json.load(file)
+    data = json.load(file.read().decode('utf-8-sig'))
     
 
 
