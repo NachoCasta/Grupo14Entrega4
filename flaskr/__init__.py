@@ -104,7 +104,8 @@ def palabra_clave():
     keyword = request.args.get("keyword")
     resultado = []
     for mensaje in data:
-        if keyword.lower() in mensaje["contenido"].lower():
+        if keyword.lower() in mensaje["contenido"].lower() or \
+           keyword.replace(" ", "") in mensaje["contenido"].lower():
             resultado.append(mensaje)
     return jsonify(resultado)
 
