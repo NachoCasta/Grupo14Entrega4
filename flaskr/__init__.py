@@ -17,7 +17,7 @@ def create_app():
 app = create_app()
 
 # REPLACE WITH YOUR DATABASE NAME
-MONGODATABASE = "myDatabase"
+MONGODATABASE = "myDataBase"
 MONGOSERVER = "localhost"
 MONGOPORT = 27017
 client = MongoClient(MONGOSERVER, MONGOPORT)
@@ -77,6 +77,15 @@ def example():
 @app.route("/api/date")
 def messages_by_date():
     return "DATE"
+
+@app.route("/api/ultimos")
+def ultimos_mensajes():
+    return "ULTIMOS MENSAJES"
+
+@app.route("/api/clave")
+def palabra_clave():
+    return "PALABRA CLAVE"
+    
 
 
 if __name__ == "__main__":
