@@ -77,7 +77,11 @@ def example():
 @app.route("/api/date")
 def messages_by_date():
     date = request.args.get("date")
-    return "DATE"
+    resultado = []
+    for mensaje in data:
+        if date == mensaje["fecha"]:
+            resultado.append(mensaje)
+    return jsonify(resultado)
 
 @app.route("/api/ultimos")
 def ultimos_mensajes():
@@ -85,8 +89,14 @@ def ultimos_mensajes():
     k = request.args.get("k")
     resultado = []
     for mensaje in data:
-        if keyword in mensaje["contenido"].lower():
+        if numero == mensaje["numero"]:
             resultado.append(mensaje)
+    resultado.sort(key=lambda k: k["fecha"], reverse=True)
+    try:
+        if len(resultado) > int(k):
+            resultado = resultado[:int(k)]
+    except ValueError:
+        pass        
     return jsonify(resultado)
 
 @app.route("/api/clave")
