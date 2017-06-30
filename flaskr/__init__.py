@@ -76,15 +76,26 @@ def example():
 
 @app.route("/api/date")
 def messages_by_date():
+    date = request.args.get("date")
     return "DATE"
 
 @app.route("/api/ultimos")
 def ultimos_mensajes():
+    numero = request.args.get("numero")
+    k = request.args.get("k")
     return "ULTIMOS MENSAJES"
 
 @app.route("/api/clave")
 def palabra_clave():
-    return "PALABRA CLAVE"
+    keyword = request.args.get("keyword")
+    resultado = []
+    for mensaje in data:
+        if keyword in mensaje["contenido"]:
+            resultado.append(mensaje)
+    return flask.jsonify(resultado)
+
+with open("escuchas.json") as file:
+    data = json.load(file)
     
 
 
