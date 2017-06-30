@@ -90,7 +90,7 @@ def palabra_clave():
     keyword = request.args.get("keyword")
     resultado = []
     for mensaje in data:
-        if keyword in mensaje["contenido"]:
+        if keyword in mensaje["contenido"].lower():
             resultado.append(mensaje)
     return jsonify(resultado)
 
