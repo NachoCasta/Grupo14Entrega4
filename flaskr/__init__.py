@@ -7,7 +7,7 @@ import json
 from bson import json_util
 from pymongo import MongoClient
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash
+     render_template, flash, jsonify
 
 
 def create_app():
@@ -92,7 +92,7 @@ def palabra_clave():
     for mensaje in data:
         if keyword in mensaje["contenido"]:
             resultado.append(mensaje)
-    return flask.jsonify(resultado)
+    return jsonify(resultado)
 
 with open("var/www/flaskr/escuchas.json", encoding='utf-8') as file:
     data = json.load(file)
