@@ -83,14 +83,18 @@ def messages_by_date():
 def ultimos_mensajes():
     numero = request.args.get("numero")
     k = request.args.get("k")
-    return "ULTIMOS MENSAJES"
+    resultado = []
+    for mensaje in data:
+        if keyword in mensaje["contenido"].lower():
+            resultado.append(mensaje)
+    return jsonify(resultado)
 
 @app.route("/api/clave")
 def palabra_clave():
     keyword = request.args.get("keyword")
     resultado = []
     for mensaje in data:
-        if keyword in mensaje["contenido"].lower():
+        if keyword.lower() in mensaje["contenido"].lower():
             resultado.append(mensaje)
     return jsonify(resultado)
 
